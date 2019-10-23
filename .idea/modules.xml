@@ -2,6 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IdeaProjects.javatraining.sandbox.main.iml" filepath="$PROJECT_DIR$/.idea/modules/IdeaProjects.javatraining.sandbox.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/IdeaProjects.javatraining.sandbox.test.iml" filepath="$PROJECT_DIR$/.idea/modules/IdeaProjects.javatraining.sandbox.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook.main.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/addressbook.test.iml" filepath="$PROJECT_DIR$/.idea/modules/addressbook.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/javatraining.addressbook.main.iml" filepath="$PROJECT_DIR$/.idea/modules/javatraining.addressbook.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/javatraining.addressbook.test.iml" filepath="$PROJECT_DIR$/.idea/modules/javatraining.addressbook.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/javatraining.sandbox.main.iml" filepath="$PROJECT_DIR$/.idea/modules/javatraining.sandbox.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/javatraining.sandbox.test.iml" filepath="$PROJECT_DIR$/.idea/modules/javatraining.sandbox.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/sandbox.iml" filepath="$PROJECT_DIR$/.idea/modules/sandbox.iml" />
