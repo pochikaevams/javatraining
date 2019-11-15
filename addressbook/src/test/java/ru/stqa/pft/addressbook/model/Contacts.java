@@ -10,15 +10,18 @@ public class Contacts extends ForwardingSet<ContactData> {
     private Set<ContactData> delegate;
 
     public Contacts() {
+
         this.delegate = new HashSet<ContactData>();
     }
 
     public Contacts(Contacts contact) {
+
         this.delegate = new HashSet<ContactData>(contact.delegate);
     }
 
     @Override
     protected Set<ContactData> delegate() {
+
         return delegate;
     }
 
