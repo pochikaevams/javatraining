@@ -41,7 +41,7 @@ public class ApplicationManager {
         }
 
         wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wd.get(properties.getProperty("http://192.168.64.2/addressbook/index.php"));
+        wd.get(properties.getProperty("web.baseUrl"));
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
