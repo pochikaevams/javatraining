@@ -111,6 +111,7 @@ public class ContactHelper extends HelperBase {
         deleteSelectedContact();
         contactCache = null;
         confirmAlert();
+        goToMainPage();
     }
 
     private void initContactPreviewById(int id) {
