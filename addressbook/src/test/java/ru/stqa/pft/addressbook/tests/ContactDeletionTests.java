@@ -11,14 +11,14 @@ import static org.testng.Assert.assertEquals;
 
 public class ContactDeletionTests extends TestBase {
 
-    @BeforeMethod
-    public void ensurePreconditions() {
-        if (app.db().contacts().size() == 0) {
-            app.goTo().mainPage();
-            app.contact().create(new ContactData().withFirstName("Maria").withLastName("Invav").
-                    withAddress("coty").withMobilePhone("vert").withEmail("qwerte").withGroup("test1"), true);
-        }
-    }
+//    @BeforeMethod
+//    public void ensurePreconditions() {
+//        if (app.db().contacts().size() == 0) {
+//            app.goTo().mainPage();
+//            app.contact().create(new ContactData().withFirstName("Maria").withLastName("Invav").
+//                    withAddress("coty").withMobilePhone("vert").withEmail("qwerte").withGroup("test1"), true);
+//        }
+//    }
         @Test
         public void testContactDeletion () {
             Contacts before = app.db().contacts();

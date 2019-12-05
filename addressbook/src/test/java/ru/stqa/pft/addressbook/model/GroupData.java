@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table (name = "group_list")
@@ -45,6 +48,8 @@ public class GroupData {
         return this;
     }
 
+    @ManyToMany(mappedBy = "groups")
+    private Set<ContactData> contacts = new HashSet<ContactData>();
 
     public int getId() {
         return id;
@@ -84,6 +89,10 @@ public class GroupData {
     public String getFooter() {
 
         return footer;
+    }
+
+    public Set<ContactData> getContacts() {
+        return new Contacts(contacts);
     }
 
     @Override

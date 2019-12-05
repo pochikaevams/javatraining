@@ -2,7 +2,9 @@ package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Type;
-
+import org.hibernate.annotations.ManyToAny;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -58,6 +60,11 @@ public class ContactData {
 
     @Transient
     private String allMainInfo;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
 
 
     public ContactData withId(int id) {
@@ -219,6 +226,10 @@ public class ContactData {
 
     public String getGroup() {
         return group;
+    }
+
+    public Groups getGroups() {
+        return new Groups(groups);
     }
 
     @Override
