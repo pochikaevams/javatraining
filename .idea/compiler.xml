@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="addressbook.main" target="1.8" />
       <module name="addressbook.test" target="1.8" />
+      <module name="bugify.main" target="1.8" />
+      <module name="bugify.test" target="1.8" />
       <module name="IdeaProjects.javatraining.sandbox.main" target="1.8" />
       <module name="IdeaProjects.javatraining.sandbox.test" target="1.8" />
       <module name="javatraining.addressbook.main" target="1.8" />
