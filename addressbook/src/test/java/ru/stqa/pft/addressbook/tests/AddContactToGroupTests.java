@@ -1,34 +1,60 @@
 package ru.stqa.pft.addressbook.tests;
 
-import ru.stqa.pft.addressbook.model.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertFalse;
 
-public class AddContactToGroupTests extends TestBase {
+public class AddContactToGroupTests extends TestBase{
 
     @BeforeMethod
-    public void ensurePreconditions() {
+    public void ensurePreconditionsForContact() {
         if (app.db().contacts().size() == 0) {
             app.goTo().mainPage();
-            app.contact().create(new ContactData().withFirstName("t").withLastName("tr").
-                    withAddress("tre").withMobilePhone("qwe").withEmail("qwert"));
+            app.contact().create(new ContactData().withFirstName("Maria").withLastName("Ivanova").
+                    withAddress("dsfe").withMobilePhone("qwsdfe").withEmail("qwerty").withGroup("test1"), true);
         }
-        if (app.db().groups().size() == 0) {
+        app.goTo().mainPage();
+    }
+
+    @BeforeMethod
+    public void ensurePreconditionsForGroup() {
+        if(app.db().groups().size() == 0){
             app.goTo().groupPage();
-            app.group().create(new GroupData().withName("test1"));
-            app.goTo().mainPage();
+            app.group().create(new GroupData().withName("test add"));
         }
     }
 
     @Test
-    public void testAddContactToGroupTests() {
-        ListOfContactsInGroup before = app.db().groupsWithContact();
-        ContactData contactToAddToGroup = app.db().contacts().iterator().next();
-        GroupData groupToAddContactTo = app.db().groups().iterator().next();
-        app.contact().addToGroup(contactToAddToGroup, groupToAddContactTo);
-        ListOfContactsInGroup after = app.db().groupsWithContact();
-        assertThat(after, equalTo(before.withAdded(new ContactInGroupData().withGroupId(groupToAddContactTo.getId()))));
+    public void testAddingToGroup(){
+        Contacts contacts = app.db().contacts();
+        Groups groups = app.db().groups();
+        GroupData selectedGroup = groups.iterator().next();
+        contacts.removeIf(contactData -> contactData.getGroups().contains(selectedGroup));
+        if(contacts.size() == 0){
+            app.goTo().mainPage();
+            app.contact().create(new ContactData().withFirstName("Maria").withLastName("Ivanova").
+                    withAddress("dsfe").withMobilePhone("qwsdfe").withEmail("qwerty").withGroup("test1"), true);
+            contacts = app.db().contacts();
+            contacts.removeIf(contactData -> contactData.getGroups().contains(selectedGroup));
+        }
+        ContactData modifiedContact = contacts.iterator().next();
+        ContactData contactBefore = app.db().contactById(modifiedContact.getId());
+        app.goTo().mainPage();
+        app.contact().showContactsInGroup("[all]");
+        assertFalse(selectedGroup.getContacts().contains(modifiedContact));
+        assertFalse(modifiedContact.getGroups().contains(selectedGroup));
+        app.contact().selectContactById(modifiedContact.getId());
+        app.contact().selectGroup(selectedGroup.getName());
+        app.contact().addToGroupSelectedContacts();
+        ContactData updatedContact = app.db().contactById(modifiedContact.getId());
+        assertThat(updatedContact.getGroups(), equalTo(contactBefore.addGroup(selectedGroup).getGroups()));
+        verifyContactListInUIByGroup(selectedGroup);
     }
 }

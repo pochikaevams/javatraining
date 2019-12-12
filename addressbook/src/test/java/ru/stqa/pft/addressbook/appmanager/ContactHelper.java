@@ -56,7 +56,7 @@ public class ContactHelper extends HelperBase {
         click(By.name("add"));
     }
 
-    private void submitRemoveContactFromGroup() {
+    public void submitDeleteContactFromGroup() {
         click(By.name("remove"));
     }
 
@@ -197,21 +197,17 @@ public class ContactHelper extends HelperBase {
         submitAddContactToGroup(group);
     }
 
-    public void removeFromGroup(Groups list, ContactInGroupData toDelete) {
-        selectGroup(list, toDelete);
-        selectContact();
-        submitRemoveContactFromGroup();
+    public void addToGroupSelectedContacts() {
+        click(By.xpath("//input[@value='Add to']"));
     }
 
-    private void selectGroup(Groups list, ContactInGroupData toDelete) {
-        String groupToSelect = null;
+    public void selectGroup(String name){
+        click(By.name("to_group"));
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(name);
+    }
 
-        for (GroupData s : list) {
-            if (s.getId() == toDelete.getGroupId()) {
-                groupToSelect = s.getName();
-                break;
-            }
-        }
-        new Select(wd.findElement(By.name("group"))).selectByVisibleText(groupToSelect);
+    public void showContactsInGroup(String name){
+        click(By.name("group"));
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(name);
     }
 }

@@ -240,4 +240,20 @@ public class ContactData {
                 '}';
     }
 
+    public ContactData inGroup(GroupData group) {
+        groups.add(group);
+        return this;
+    }
+
+    public ContactData addGroup(GroupData group){
+        this.groups.add(group);
+        return this;
+    }
+
+    public ContactData deleteGroup(GroupData group) {
+        this.groups.remove(group);
+        return this;
+    }
+
+
 }

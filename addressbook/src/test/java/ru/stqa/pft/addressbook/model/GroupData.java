@@ -102,5 +102,4 @@ public class GroupData {
                 ", name='" + name + '\'' +
                 '}';
     }
-
 }
