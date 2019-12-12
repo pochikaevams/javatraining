@@ -18,7 +18,7 @@ public class AddContactToGroupTests extends TestBase{
         if (app.db().contacts().size() == 0) {
             app.goTo().mainPage();
             app.contact().create(new ContactData().withFirstName("Maria").withLastName("Ivanova").
-                    withAddress("dsfe").withMobilePhone("qwsdfe").withEmail("qwerty").withGroup("test1"), true);
+                    withAddress("dsfe").withMobilePhone("qwsdfe").withEmail("qwerty"), true);
         }
         app.goTo().mainPage();
     }
@@ -27,7 +27,7 @@ public class AddContactToGroupTests extends TestBase{
     public void ensurePreconditionsForGroup() {
         if(app.db().groups().size() == 0){
             app.goTo().groupPage();
-            app.group().create(new GroupData().withName("test add"));
+            app.group().create(new GroupData().withName("test"));
         }
     }
 
@@ -36,14 +36,6 @@ public class AddContactToGroupTests extends TestBase{
         Contacts contacts = app.db().contacts();
         Groups groups = app.db().groups();
         GroupData selectedGroup = groups.iterator().next();
-        contacts.removeIf(contactData -> contactData.getGroups().contains(selectedGroup));
-        if(contacts.size() == 0){
-            app.goTo().mainPage();
-            app.contact().create(new ContactData().withFirstName("Maria").withLastName("Ivanova").
-                    withAddress("dsfe").withMobilePhone("qwsdfe").withEmail("qwerty").withGroup("test1"), true);
-            contacts = app.db().contacts();
-            contacts.removeIf(contactData -> contactData.getGroups().contains(selectedGroup));
-        }
         ContactData modifiedContact = contacts.iterator().next();
         ContactData contactBefore = app.db().contactById(modifiedContact.getId());
         app.goTo().mainPage();
