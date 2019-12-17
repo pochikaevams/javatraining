@@ -60,6 +60,10 @@ public class ContactHelper extends HelperBase {
         click(By.name("remove"));
     }
 
+    public void goBack() {
+        click(By.cssSelector("select[name=\"group\"] > option[value='']"));
+    }
+
     private void selectContact() {
         click(By.name("selected[]"));
     }
